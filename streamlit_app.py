@@ -11,8 +11,9 @@ from dataclasses import dataclass
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import random
 
-# ---------- Core logic (tái sử dụng từ notebook) ----------
+# ---------- Core logic (reused from notebook) ----------
 
 @dataclass
 class InitParams:
@@ -78,7 +79,7 @@ def count_pair_coverage(days: List[List[int]]) -> Dict[Tuple[int, int], int]:
             counts[e] += 1
     return counts
 
-def verify_coverage(n: int, pair_counts: Dict[Tuple[int, int], int]) -> Tuple[bool, list[Tuple[int,int]]]:
+def verify_coverage(n: int, pair_counts: Dict[Tuple[int, int], int]) -> Tuple[bool, List[Tuple[int,int]]]:
     need_exact_one = (n % 2 == 1)
     missing = []
     for u in range(n):
@@ -93,7 +94,6 @@ def verify_coverage(n: int, pair_counts: Dict[Tuple[int, int], int]) -> Tuple[bo
 def try_repair_last_day(days: List[List[int]], missing: List[Tuple[int,int]], max_tries: int = 200) -> List[List[int]]:
     if not missing or len(days) == 0:
         return days
-    import random
     last = days[-1][:]
     n = len(last)
     need = set(tuple(sorted(e)) for e in missing)
@@ -137,7 +137,7 @@ def df_pair_counts(n: int, pair_counts: Dict[Tuple[int,int], int]) -> pd.DataFra
     return df[["Pair","Count"]]
 
 def plot_circle(order: List[int]):
-    """Vẽ vòng tròn cho một ngày."""
+    """Draw a circle for a given day's seating arrangement."""
     n = len(order)
     r = 1.0
     angles = [2*math.pi * i / n for i in range(n)]
