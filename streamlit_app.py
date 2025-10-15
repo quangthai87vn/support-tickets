@@ -201,7 +201,7 @@ st.title("🪑 Xếp chỗ vòng tròn – By Bui Quang Thai")
 st.caption("Đảm bảo: mọi cặp người đều từng ngồi kề nhau (n lẻ: mỗi cặp đúng 1 lần; n chẵn: mỗi cặp ≥ 1 lần). App tự động Repair hoặc thêm ngày hoàn tất đến khi PASS ✅.")
 
 with st.sidebar:
-    st.header("Thiết lập")
+    st.header("Thiết lập chung")
     n = st.number_input("Số người (n ≥ 3)", min_value=3, value=10, step=1)
     auto_repair = st.checkbox("Thử Repair nếu thiếu (sửa nhiều ngày)", value=True)
     passes = st.slider("Số lượt quét Repair", 1, 6, 3)
